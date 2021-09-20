@@ -1,0 +1,47 @@
+name: Serverless PR
+on:
+  pull_request:
+    branches:
+      - master
+
+env:
+  # Update this to the location of your distributor root directory if different:
+  DISTRIBUTOR_ROOT: "distributor"
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    name: Serverless PR handler
+    outputs:
+      # Add extra outputs to correspond to any additions to the matched patterns in the filter step below.
+      distributor: ${{ steps.filter.outputs.distributor }}
+    steps:
+      - name: Match files in PR against rules
+        id: filter
+        uses: dorny/paths-filter@v2
+        with:
+          list-files: shell
+          # Can add more patterns here if necessary, don't forget to update the outputs above if you do so!
+          filters: |
+            distributor:
+              - '${{ env.DISTRIBUTOR_ROOT }}/logs/*/incoming/*'
+
+# This job does a more detailed check on the contents of any incoming checkpoints added.
+# Run this job only when we've detected a witnessed checkpoint
+  distributor_pr_validator:
+    needs: changes
+    if: ${{ needs.changes.outputs.distributor == 'true' }}
+    runs-on: ubuntu-latest
+    name: Handle witness PR
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: "refs/pull/${{ github.event.number }}/merge"
+      - name: Validate distributor PR
+        uses: google/trillian-examples/serverless/deploy/github/distributor/combine_witness_signatures@master
+        with:
+          distributor_dir: '${{ env.DISTRIBUTOR_ROOT }}'
+          config: '${{ env.DISTRIBUTOR_ROOT }}/config.json'
+          dry_run: true
+
