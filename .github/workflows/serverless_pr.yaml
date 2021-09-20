@@ -42,6 +42,6 @@ jobs:
         uses: google/trillian-examples/serverless/deploy/github/distributor/combine_witness_signatures@master
         with:
           distributor_dir: '${{ env.DISTRIBUTOR_ROOT }}'
-          config: '${{ env.DISTRIBUTOR_ROOT }}/config.json'
+          config: '${{ env.DISTRIBUTOR_ROOT }}/config.yaml'
           dry_run: true
 
