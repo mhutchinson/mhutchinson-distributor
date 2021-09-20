@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master
+      - main
 
 env:
   # Update this to the location of your distributor root directory if different:
