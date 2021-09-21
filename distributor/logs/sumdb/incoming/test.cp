@@ -1,0 +1,6 @@
+go.sum database tree
+6995936
+4drd0Lo0IbwYqSNltbrgl2Xb20TkGCpXNCa4ULXNFI0=
+
+— sum.golang.org Az3grjw2H2HjTZYfytbrhQgZc61Uoyv95j4781SB3IctjR7IqmIGmhYrhovnl+fbIXu7z5H0P2eGcqWrCRfizbj9DAw=
+— mhutchinson.witness OEs9vJ8PKzOrufCqTEoXU+DvB+pXd0gR0rszkFruxJ4fiC8SouYdYbQz7hUdNv1K76PhHdVMdte6tL6WivGEXgjekQ8=
