@@ -1,0 +1,63 @@
+name: Automerge PR
+on:
+  # Trigger this action when other actions have completed.
+  # workflow_run gives us the elevated privileges necessary to merge PRs, etc.
+  workflow_run:
+    # Note that this should match the name of the workfle triggered by distributor PRs being raised:
+    workflows: ["Serverless PR"]
+    types:
+      - completed
+
+env:
+  # Update this to the location of your distributor root directory if different:
+  DISTRIBUTOR_ROOT: "distributor"
+
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    # Only run when the trigger event was the successful completion of the "Serverless PR" workflow.
+    if: >
+      ${{ github.event.workflow_run.event == 'pull_request' &&
+          github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      # Fetch PR number stored by the optional step in the Serverless PR workflow above.
+      - name: 'Fetch PR metadata artifact'
+        uses: actions/github-script@v3.1.0
+        with:
+          script: |
+            var artifacts = await github.actions.listWorkflowRunArtifacts({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               run_id: ${{github.event.workflow_run.id }},
+            });
+            var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
+              return artifact.name == "pr_metadata"
+            })[0];
+            var download = await github.actions.downloadArtifact({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               artifact_id: matchArtifact.id,
+               archive_format: 'zip',
+            });
+            var fs = require('fs');
+            fs.writeFileSync('${{github.workspace}}/pr_metadata.zip', Buffer.from(download.data));
+      - name: 'Grab PR number'
+        id: find_pr_number
+        run: |
+          unzip pr_metadata.zip
+          echo "::set-output name=pr::$(cat NR)"
+
+      - uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: Automerge
+          number: ${{ steps.pr_metadata.outputs.pr }}
+
+      - name: automerge
+        uses: "pascalgn/automerge-action@v0.14.3"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: Automerge
+          MERGE_METHOD: rebase
+          MERGE_DELETE_BRANCH: true
+          PULL_REQUEST: ${{ steps.pr_metadata.outputs.pr }}
+
