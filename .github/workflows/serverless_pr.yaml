@@ -24,7 +24,7 @@ jobs:
           list-files: shell
           filters: |
             distributor_incoming:
-              - added|modified: '${{ env.DISTRIBUTOR_ROOT }}/logs/*/incoming/*'
+              - added: '${{ env.DISTRIBUTOR_ROOT }}/logs/*/incoming/*'
             distributor_private:
               - '${{ env.DISTRIBUTOR_ROOT }}!(/logs/*/incoming/*)'
 
