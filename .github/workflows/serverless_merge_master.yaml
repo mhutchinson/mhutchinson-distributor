@@ -3,6 +3,10 @@ on:
     branches:
       # This is the name of the primary branch, which may be `main` for newer repos.
       - main
+  workflow_run:
+    workflows: ["Automerge PR"]
+    types:
+      - completed
 
 env:
   # Update this to the location of your distributor root directory if different:
