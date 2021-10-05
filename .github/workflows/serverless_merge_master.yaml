@@ -1,8 +1,10 @@
+name: Integrate Incoming Checkpoints
 on:
   push:
     branches:
       # This is the name of the primary branch, which may be `main` for newer repos.
       - main
+  workflow_dispatch:
 
 env:
   # Update this to the location of your distributor root directory if different:
