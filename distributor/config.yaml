@@ -19,4 +19,7 @@ Logs:
   - Origin: DEFAULT
     PublicKeyType: ecdsa
     PublicKey: Pixel-Transparency-Log-2021+72c878db+AjBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABFPN7lzVIk2BOd3Nk33VpqqVttGwV8uChH+RX/HVfBiypVQFyh8o8Ny6fSdxNMgkSf9/VynrgADBeys0r4Q9uPA=
+  # https://www.sigsum.org/
+  - Origin: fff76fe2e9343c05e38bd1ebfb787cae3617615620476b23d2a8f9998119c5a3
+    PublicKey: fff76fe2e9343c05e38bd1ebfb787cae3617615620476b23d2a8f9998119c5a3+eedc046f+AYzzrIWq3UKJHFrprvJyRMsqVGojEvgAIKrT8q4a9zMU
 
