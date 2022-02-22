@@ -1,4 +1,4 @@
-MaxWitnessSignatures: 6
+MaxWitnessSignatures: 5
 
 Witnesses:
   - mhutchinson.witness+384b3dbc+AfWg+7+qmcFoMuIM0ZGe4ZsIuc6gEg3EL0cKkNVolCA+
@@ -6,7 +6,6 @@ Witnesses:
   - can-I-get-a-witness+b97a1e56+AZkpOlwZwR+wwasAENZwIa98ufmWmzlq0Tx0XN7voU6X
   - JKU-INS+814e35bf+AdYBKkmgKGzao81EKOSxkphZLDtgBf72VXHFOIhMmqvO
   - ydTest+b2e74379+AfsqZl3HQF5yopnPJDyTKhSgmuyyQEgNkcgjLwHhgxgv
-
 
 Logs:
   - Origin: go.sum database tree
