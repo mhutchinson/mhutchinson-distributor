@@ -6,8 +6,6 @@ on:
       - main
   workflow_run:
     workflows: ["Automerge PR"]
-    types:
-      - completed
   workflow_dispatch:
 
 env:
@@ -23,10 +21,19 @@ jobs:
     # Attempt to combine witness signatures with the log checkpoint.
     - name: Combine witness signatures
       id: combine_witness_signatures
-      uses: google/trillian-examples/serverless/deploy/github/distributor/combine_witness_signatures@master
+      uses: google/trillian-examples/serverless/deploy/github/distributor/combine_witness_signatures@HEAD
       with:
           distributor_dir: '${{ env.DISTRIBUTOR_ROOT }}'
           config: '${{ env.DISTRIBUTOR_ROOT }}/config.yaml'
+    # Update log index.
+    - name: Update logs index
+      id: update_logs_index
+      uses: google/trillian-examples/serverless/deploy/github/distributor/update_logs_index@HEAD
+      with:
+          distributor_dir: '${{ env.DISTRIBUTOR_ROOT }}'
+          config: '${{ env.DISTRIBUTOR_ROOT }}/config.yaml'
+          output: '${{ env.DISTRIBUTOR_ROOT }}/logs/README.md'
+    # Commit any changes back to distributor repo.
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_user_name: Serverless Bot
