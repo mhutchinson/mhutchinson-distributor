@@ -1,14 +1,13 @@
-# mhutchinson's Checkpoint Distributor
+# mhutchinson's Log Checkpoint Distributor
 
-This repository distributes witnessed checkpoints for the following logs:
+This is a proof of concept distributor for log checkpoints that have been witnessed.
+If none of these terms make sense to you:
+  * [Distributor](https://github.com/google/trillian-examples/tree/master/serverless/deploy/github/distributor)
+  * [Witness](https://github.com/google/trillian-examples/tree/master/witness)
+  * [Log](https://github.com/google/trillian)
+  * [Checkpoint](https://github.com/transparency-dev/formats)
 
- * [sum.golang.org](./distributor/logs/3e9617dce5730053cb82f0481b9d289cd3c384a9219ef5509c91aa60d214794e)
- * [Pixel 6 BT](./distributor/logs/542f1d5cf18cac38a8921be403c6b620eae2c06d5f0d15a050cfe98e8202d02d)
- * [f-secure-foundry/armory-drive-log](./distributor/logs/50dfc1866b26a18b65834743645f90737c331bc5e99b44100e5ca555c17821e3)
- * [Rekor / SigStore](./distributor/logs/e09045bedf247c449acf3fe26375fb5a1b81110546e797d520cb1133f27fbd1a)
- * [LVFS](./distributor/logs/74ea854e2a0cdf00544673d488ef95955b56cdcaa23ec382e437b89a20985bd4)
- * [AlCutter/serverless-test/log](./distributor/logs/48e2ecbc0474292d790906a13023a76a93e0f3706f86f9f939bd91b7dcfde4a6)
-
+For a list of logs and witnesses supported by this distributor, see [generated docs](./distributor/logs).
 The format of the checkpoint files is `checkpoint.N`, where `N` is the number of witness signatures.
 Lower `N` values will be fresher, but higher `N` values have been witnessed by more parties.
 
