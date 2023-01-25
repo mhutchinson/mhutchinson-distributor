@@ -4,7 +4,6 @@
 | Origin | SignedBy |
 |--------|----------|
 | [go.sum database tree](./bdc0d5078d38fc2b9491df373eb7c0d3365bfe661c83edc89112fd38719dc3a0) | sum.golang.org | 
-| [github.com/AlCutter/serverless-test/log](./5ecefef59f71c31d0aa3eb20e47b11916d20d655863ec2b1c8de5278dbdedfa0) | github.com/AlCutter/serverless-test/log | 
 | [Armory Drive Prod 2](./a49f0a631f86d3e4fc6726e4389d1cc1998731aa58be95e3e81026d35d2b2902) | armory-drive-log | 
 | [rekor.sigstore.dev - 3904496407287907110](./9b2bc13a3839d8a954832caa002ce8d7fb3d0bf7f4ce4a310a7dbbf28de101a8) | rekor.sigstore.dev | 
 | [rekor.sigstore.dev - 2605736670972794746](./50ed07082843287df5342353a4084563e6eaeb7bbaaa961d45400dde004c1186) | rekor.sigstore.dev | 
