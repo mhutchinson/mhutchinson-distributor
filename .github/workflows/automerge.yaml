@@ -56,6 +56,7 @@ jobs:
         uses: "pascalgn/automerge-action@v0.15.5"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: ""
           MERGE_METHOD: rebase
           MERGE_DELETE_BRANCH: true
           PULL_REQUEST: ${{ steps.pr_metadata.outputs.pr }}
